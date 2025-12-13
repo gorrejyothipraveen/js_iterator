@@ -4,7 +4,8 @@
 export function* lineIterator(text ) {
   let i = 0
   while(i < text.length) {
-    const indexOfLine = text.indexOf('\n', i) === -1 ? text.length : text.indexOf('\n', i);
+    const indexOfNewLine = text.indexOf('\n', i)
+    const indexOfLine = indexOfNewLine === -1 ? text.length : indexOfNewLine;
     yield text.slice(i, indexOfLine);
     i = indexOfLine + 1;
   }
