@@ -2,13 +2,14 @@ export function* partition(items, predicate) {
   let array = [];
   let initialValue;
   for (let index = 0; index < items.length; index++) {
+    const predicatedValue = predicate(items[index]);
     if(array.length === 0) {
-      initialValue = predicate(items[index]);
+      initialValue = predicatedValue;
     }
-    if(initialValue !== predicate(items[index])) {
+    if(initialValue !== predicatedValue) {
       yield [...array];
       array = [];
-      initialValue = predicate(items[index]);
+      initialValue = predicatedValue;
     } 
 
     array.push(items[index]); 

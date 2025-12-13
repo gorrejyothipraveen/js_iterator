@@ -25,3 +25,13 @@ Deno.test('simple test for even and odd numbers partition', () => {
   const array = [1, 1, 2, 3, 3];
   assertEquals([...partition(array, x => (x & 1))], [[1 , 1], [2], [3, 3]])
 })
+
+Deno.test('test case for identity', () => {
+  const array = [1,1,1,2,2,1,1,3,3,2];
+  assertEquals([...partition(array, x => x)], [[1,1,1],[2,2],[1,1],[3,3],[2]])
+})
+
+Deno.test('test case for even and odd', () => {
+  const array = [1,3,1,2,2,1,1,3,5,2];
+  assertEquals([...partition(array, x => (x & 1))], [[1,3,1],[2,2],[1,1,3,5],[2]])
+})
