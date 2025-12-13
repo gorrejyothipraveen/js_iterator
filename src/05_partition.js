@@ -1,18 +1,17 @@
-export function* partition(items) {
+export function* partition(items, predicate) {
   let array = [];
   let initialValue;
   for (let index = 0; index < items.length; index++) {
     if(array.length === 0) {
-      initialValue = items[index];
+      initialValue = predicate(items[index]);
     }
-    if(initialValue !== items[index]) {
+    if(initialValue !== predicate(items[index])) {
       yield [...array];
       array = [];
-      initialValue = items[index];
+      initialValue = predicate(items[index]);
     } 
 
-    array.push(items[index]);
-    
+    array.push(items[index]); 
     if( index === items.length - 1) {
       yield [...array];
     }
